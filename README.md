@@ -1,28 +1,10 @@
-# react-native-hotspotmanager
-
-## Getting started
-
-`$ npm install react-native-hotspotmanager --save`
-
-### Mostly automatic installation
-
-`$ react-native link react-native-hotspotmanager`
-
-## Usage
-```javascript
-import Hotspotmanager from 'react-native-hotspotmanager';
-
-// TODO: What to do with the module?
-Hotspotmanager;
-
-
 <h2 align="center">
   <img src="/docs/wifi-hotspot-app.jpg" /><br>
   React Native Hotspot [Android]
 </h2>
 
-[![NPM Version](https://img.shields.io/badge/npm-1.0.0-orange.svg)](https://www.npmjs.com/package/react-native-wifi-hotspot)
-[![NPM Version](https://img.shields.io/badge/yarn-1.0.0-red.svg)](https://yarnpkg.com/en/package/react-native-wifi-hotspot)
+[![NPM Version](https://img.shields.io/badge/npm-1.0.0-orange.svg)](https://www.npmjs.com/package/react-native-hotspotmanager)
+[![NPM Version](https://img.shields.io/badge/yarn-1.0.0-red.svg)](https://yarnpkg.com/en/package/react-native-hotspotmanager)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#)
 
 # Introduce
@@ -68,22 +50,22 @@ project(':hotspotmanager').projectDir = new File(rootProject.projectDir, '../nod
 ## Get Started
 
 * Check WIFI is on/off then turn hotspot on and automatically check if hotspot already opened
-
-Hotspot.enable(() => {
+~~~
+Hotspotmanager.enable(() => {
       ToastAndroid.show("Hotspot Enabled",ToastAndroid.SHORT);
     }, (err) => {
       ToastAndroid.show(err.toString(),ToastAndroid.SHORT);
     })
-
+~~~
 
 * Check hotspot is on then turn it off and automatically check if hotspot already closed
-
-Hotspot.disable(() => {
+~~~
+Hotspotmanager.disable(() => {
       ToastAndroid.show("Hotspot Disabled",ToastAndroid.SHORT);
     }, (err) => {
       ToastAndroid.show(err.toString(),ToastAndroid.SHORT);
     })
-
+~~~
 
 * You can set your own configuration to your hotspot using this function. supported configuration:
   * SSID
@@ -91,24 +73,24 @@ Hotspot.disable(() => {
   * Protocols
   * authAlgorithms
   * Security type
-
+  
 
 | Parameters | Required | Types | Default
 | --- | --- | --- | --- |
 | `SSID` | * | none | none
 | `password` | * | none | password should be provided if you will use our settings |
-| `protocols` | - | `Hotspot.protocols.RSN` <br> `Hotspot.protocols.WPA` <br>`Hotspot.protocols.BOTH`| `Hotspot.protocols.BOTH` |
-| `securityType` | - | `Hotspot.security.WPA_PSK` <br> `Hotspot.security.WPA_EAP` <br> `Hotspot.security.IEEE8021X` <br> `Hotspot.security.WPA2_PSK` | `Hotspot.security.WPA2_PSK` |
-| `authAlgorithms` | - | `Hotspot.auth.OPEN` <br> `Hotspot.auth.SHARED` <br> `Hotspot.auth.LEAP` | `Hotspot.auth.SHARED` |
+| `protocols` | - | `Hotspotmanager.protocols.RSN` <br> `Hotspotmanager.protocols.WPA` <br>`Hotspotmanager.protocols.BOTH`| `Hotspotmanager.protocols.BOTH` |
+| `securityType` | - | `Hotspotmanager.security.WPA_PSK` <br> `Hotspotmanager.security.WPA_EAP` <br> `Hotspotmanager.security.IEEE8021X` <br> `Hotspotmanager.security.WPA2_PSK` | `Hotspotmanager.security.WPA2_PSK` |
+| `authAlgorithms` | - | `Hotspotmanager.auth.OPEN` <br> `Hotspotmanager.auth.SHARED` <br> `Hotspotmanager.auth.LEAP` | `Hotspotmanager.auth.SHARED` |
 
-
-const hotspot = {SSID: 'ASSEM', password: 'helloworld', authAlgorithms: Hotspot.auth.OPEN, protocols: Hotspot.protocols.WPA }
-    Hotspot.create(hotspot, () => {
+~~~
+const hotspot = {SSID: 'ASSEM', password: 'helloworld', authAlgorithms: Hotspotmanager.auth.OPEN, protocols: Hotspotmanager.protocols.WPA }
+    Hotspotmanager.create(hotspot, () => {
       ToastAndroid.show("Hotspot enstablished", ToastAndroid.SHORT);
     }, (err) => {
       ToastAndroid.show(err.toString(), ToastAndroid.SHORT);
     })
-
+~~~
 > You can also use your own old settings without the need of creating new one
 
 * You can fetch your hotsot's configuration. Supported returning config:
@@ -116,25 +98,25 @@ const hotspot = {SSID: 'ASSEM', password: 'helloworld', authAlgorithms: Hotspot.
   * password
   * status ( network is enabled or disabled )
   * networkId
-
+~~~
 config: {
   ssid: string,
   password: string,
   status: boolean ( true means enable, false means disable )
   networkId: Int
 }
-Hotspot.getConfig((config) => {
+Hotspotmanager.getConfig((config) => {
       ToastAndroid.show("Hotspot SSID: " + config.ssid, ToastAndroid.SHORT);
     }, (err) => {
       ToastAndroid.show(err.toString(), ToastAndroid.SHORT);
     })
-
+~~~
 
 * Fethcing connected devices to your wifi network. Returned an object for every device contains:
   * ip
   * mac
   * device number
-
+~~~
 data: [
   results: {
     ip: 192.168.x.x,
@@ -142,9 +124,9 @@ data: [
     device: number
   }
 ]
-Hotspot.peersList((data) => {
+Hotspotmanager.peersList((data) => {
       const peers = JSON.parse(data);
     }, (err) => {
       ToastAndroid.show(err.toString(), ToastAndroid.SHORT);
     })
-
+~~~
