@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Hotspotmanager extends ReactContextBaseJavaModule implements LifecycleEventListener {
-    private static String module = "Hotspot";
+    private static String module = "Hotspotmanager";
     private HotspotManager hotspot;
     public Hotspotmanager(ReactApplicationContext reactContext) {
         super(reactContext);
