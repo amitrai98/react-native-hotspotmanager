@@ -1,8 +1,8 @@
 {
   "name": "react-native-hotspotmanager",
   "title": "React Native Hotspotmanager",
-  "version": "1.0.3",
-  "description": "TODO",
+  "version": "1.0.5",
+  "description": "https://github.com/amitrai98/react-native-hotspotmanager/blob/master/README.md",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
